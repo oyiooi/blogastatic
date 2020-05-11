@@ -14,7 +14,7 @@ function tojson(str){
     return obj;
 }
 
-router.post('/',function(req,res,next){
+router.post('/',function(req,res){
     let username = req.body.name;
     let password = req.body.password;
     fs.readFile(path.join(__dirname,"../data.txt"),function(err,data){

@@ -5,8 +5,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var usersRouter = require('./routes/users');
-var loginpassRouter = require('./routes/loginpass');
+const authRouter = require('./routes/auth');
+const loginpassRouter = require('./routes/loginpass');
+const changepwRouter = require('./routes/changepw');
 
 var app = express();
 
@@ -31,8 +32,10 @@ app.all('*', function(req, res, next) {
   next();
 });
 app.use('/loginpass', loginpassRouter);
-app.use('/backend', usersRouter);
+app.use('/backend', authRouter);
 app.use('/backend',express.static('backend'));
+
+app.use('/changepw',changepwRouter);
 
 //刷新
 app.use(function(req,res,next){
