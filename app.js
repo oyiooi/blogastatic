@@ -20,10 +20,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(compression());
-app.use('/',express.static('homepage'));
-app.use('/index',express.static('index'));
-app.use('/login',express.static('login'));
-app.use('/images',express.static('images'));
+app.use('/',express.static('public/homepage'));
+app.use('/index',express.static('public/index'));
+app.use('/login',express.static('public/login'));
+app.use('/images',express.static('public/images'));
 app.all('*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", req.headers.origin);
   res.header("Access-Control-Allow-Headers", "Content-Type");
@@ -33,7 +33,7 @@ app.all('*', function(req, res, next) {
 });
 app.use('/loginpass', loginpassRouter);
 app.use('/backend', authRouter);
-app.use('/backend',express.static('backend'));
+app.use('/backend',express.static('public/backend'));
 
 app.use('/changepw',changepwRouter);
 
@@ -41,7 +41,7 @@ app.use('/changepw',changepwRouter);
 app.use(function(req,res,next){
   console.log('backendddd')
   if(req.url.indexOf('/backend')>-1){
-    res.sendFile(path.resolve(__dirname,'backend','index.html'));
+    res.sendFile(path.resolve(__dirname,'public/backend','index.html'));
   }
 })
 
